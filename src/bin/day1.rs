@@ -10,9 +10,13 @@ fn main() {
         .split_whitespace()
         .map(|ns| ns.parse().unwrap())
         .collect();
-    assert_eq!(count_increases_2(&input), 1195);
+    let answer = count_increases_2(&input);
+    assert_eq!(answer, 1195);
+    println!("Part 1 answer: {}", answer);
 
-    assert_eq!(count_increases_3(&input), 1235);
+    let answer = count_increases_3(&input);
+    assert_eq!(answer, 1235);
+    println!("Part 2 answer: {}", answer);
 }
 
 fn count_increases_2(input: &[i32]) -> i32 {

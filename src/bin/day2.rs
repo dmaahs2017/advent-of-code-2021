@@ -11,6 +11,7 @@ fn main() {
     let input = data.split('\n').collect::<Vec<_>>();
     let (x, y) = final_position(&input[..input.len() - 1]);
     assert_eq!(x * y, 1840243);
+    println!("Final Position: ({}, {}) = {}", x, y, x * y);
 
     let mut f = File::open("day2.2.txt").unwrap();
     let data = read_to_string(&mut f).unwrap();
@@ -19,6 +20,7 @@ fn main() {
     // Not sure why but there is an empty string at the end after the split operation
     let (x, y) = final_position_2(&input[..input.len() - 1]);
     assert_eq!(x * y, 1727785422);
+    println!("Final Position 2: ({}, {}) = {}", x, y, x * y);
 }
 
 enum Command {
