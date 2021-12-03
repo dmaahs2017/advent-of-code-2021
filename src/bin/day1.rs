@@ -44,7 +44,8 @@ fn count_increases_3(input: &[i32]) -> i32 {
             }
             0
         })
-        .reduce(|a, b| a + b).unwrap()
+        .reduce(|a, b| a + b)
+        .unwrap()
 }
 
 #[test]

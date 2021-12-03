@@ -1,8 +1,8 @@
 #![feature(io_read_to_string)]
-use std::str::FromStr;
-use std::num::ParseIntError;
-use std::io::read_to_string;
 use std::fs::File;
+use std::io::read_to_string;
+use std::num::ParseIntError;
+use std::str::FromStr;
 
 fn main() {
     let mut f = File::open("day2.1.txt").unwrap();
@@ -16,7 +16,7 @@ fn main() {
     let mut f = File::open("day2.2.txt").unwrap();
     let data = read_to_string(&mut f).unwrap();
     let input = data.split('\n').collect::<Vec<_>>();
-    
+
     // Not sure why but there is an empty string at the end after the split operation
     let (x, y) = final_position_2(&input[..input.len() - 1]);
     assert_eq!(x * y, 1727785422);
@@ -45,26 +45,27 @@ impl FromStr for Command {
 }
 
 fn final_position(input: &[&str]) -> (i32, i32) {
-    input.iter().map(|s| s.parse::<Command>().unwrap()).fold(Default::default(), |(x, y), command| {
-        match command {
+    input.iter().map(|s| s.parse::<Command>().unwrap()).fold(
+        Default::default(),
+        |(x, y), command| match command {
             Command::Forward(v) => (x + v, y),
             Command::Back(v) => (x - v, y),
             Command::Up(v) => (x, y - v),
             Command::Down(v) => (x, y + v),
-        }
-    })
+        },
+    )
 }
 
 fn final_position_2(input: &[&str]) -> (i32, i32) {
-    let out: (i32, i32, i32) = input.iter().map(|s| s.parse::<Command>().unwrap())
-        .fold(Default::default(), |(x, y, aim), command| {
-            match command {
-                Command::Forward(v) => (x + v, y + aim * v, aim),
-                Command::Up(v) => (x, y, aim - v),
-                Command::Down(v) => (x, y, aim + v),
-                Command::Back(_) => unreachable!(),
-            }
-        });
+    let out: (i32, i32, i32) = input.iter().map(|s| s.parse::<Command>().unwrap()).fold(
+        Default::default(),
+        |(x, y, aim), command| match command {
+            Command::Forward(v) => (x + v, y + aim * v, aim),
+            Command::Up(v) => (x, y, aim - v),
+            Command::Down(v) => (x, y, aim + v),
+            Command::Back(_) => unreachable!(),
+        },
+    );
 
     (out.0, out.1)
 }
@@ -80,7 +81,7 @@ fn part_one() {
         "forward 2",
     ];
 
-    let ( x, y ) = final_position(&input);
+    let (x, y) = final_position(&input);
     assert_eq!(x, 15);
     assert_eq!(y, 10);
     assert_eq!(x * y, 150);
