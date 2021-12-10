@@ -10,7 +10,7 @@ fn main() {
 
     let mut school: School = input.parse().unwrap();
     school.pass_time(80);
-    println!("Part one: {}", school.total() );
+    println!("Part one: {}", school.total());
     assert_eq!(school.total(), 372984);
 
     let mut school: School = input.parse().unwrap();
@@ -83,15 +83,15 @@ mod tests {
     fn read_works() {
         let input = "1,2,3,4";
         let s = School::from_str(input).unwrap();
-        assert_eq!(s.v, vec![0,1,1,1,1,0,0,0,0]);
+        assert_eq!(s.v, vec![0, 1, 1, 1, 1, 0, 0, 0, 0]);
     }
 
     #[test]
     fn incr_day_works() {
         let mut s = School::from_str("0,1,2,3,4,5,6,7,8").unwrap();
-        assert_eq!(s.v, vec![1,1,1,1,1,1,1,1,1]);
+        assert_eq!(s.v, vec![1, 1, 1, 1, 1, 1, 1, 1, 1]);
         s.increment_day();
-        assert_eq!(s.v, vec![1,1,1,1,1,1,2,1,1]);
+        assert_eq!(s.v, vec![1, 1, 1, 1, 1, 1, 2, 1, 1]);
     }
 
     #[test]
